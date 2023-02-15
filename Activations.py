@@ -1,21 +1,19 @@
-
-import Layer
+from Layer import Dense
 import numpy as np
 
+print("loool")
+class Activation(Dense):
 
-class Activations(Layer):
-    def __init__():
-        pass
+    def __init__(self, activation, der_activation):
 
-    def Tanh(input):
-        return np.tanh(input)
+        self.activation = activation
+        self.der_activation  = der_activation
+
+    def forward(self,input):
+        self.input  = input 
+        return self.activation(input)
+
+    def backward(self,i_grad, lr = None):
+        return np.multiply(i_grad, self.der_activation(self.input))
     
-    def der_Tanh(intput):
-        return 1 - np.power(np.tanh(input),2)
-    
-    def Relu(input):
-        return np.maximum(0, input)
-    
-    def der_Relu(input):
-        return input > 0 
- 
+
