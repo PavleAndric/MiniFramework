@@ -1,7 +1,5 @@
 from Activations import Activation
-
 import numpy as np
-
 
 class Tanh(Activation):
 

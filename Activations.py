@@ -1,8 +1,7 @@
-from Layer import Dense
+from Layer import Layer
 import numpy as np
 
-print("loool")
-class Activation(Dense):
+class Activation(Layer):
 
     def __init__(self, activation, der_activation):
 
@@ -14,6 +13,8 @@ class Activation(Dense):
         return self.activation(input)
 
     def backward(self,i_grad, lr = None):
-        return np.multiply(i_grad, self.der_activation(self.input))
+
+        ret = np.multiply(i_grad, self.der_activation(self.input))
+        return ret
     
 
