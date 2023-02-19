@@ -1,6 +1,5 @@
 from HelperFunctions import hot_encode
 from Error import CELoss
-from ActivationFunctions import Softmax
 import numpy as np
 
 def  softmax(input):
@@ -32,12 +31,26 @@ sample2 = np.array([[1], [2], [3], [4]])
 Y_true = [5]
 Y_pred = np.array([[1],[2],[3],[4],[1],[2],[3],[4],[1],[2]])
 rom = hot_encode(Y_true, Y_pred)
-print(rom)
+#print(rom)
 
 
 Y_true = np.array([[1],[0],[0]])
-Y_pred = np.array([[0.7], [0.1], [0.2]])
+Y_pred = np.array([[1.2], [0], [0.1234]])
+sf = softmax(Y_pred)
+#print(sf)
 
-error = CELoss(Y_true, Y_pred)
-print(error)
+#error = CELoss(Y_true, sf)
+#print(error)
+input = np.random.randn(10,10)
+Y_true = np.array([[1],[0]])
+Y_false = np.array([[0.123], [1-0.123]])
 
+
+
+def der_loss(Y_true, Y_pred):
+    ret =((1 - Y_true) / (1 - Y_pred) - Y_true / Y_pred) / np.size(Y_true)
+    return ret 
+
+ret = der_loss(Y_true, Y_false)
+print(ret.shape)
+# 2x1  size 

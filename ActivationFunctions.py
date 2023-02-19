@@ -1,5 +1,4 @@
 from Activations import Activation
-from Layer import Layer
 import numpy as np
 
 class Tanh(Activation):
@@ -25,16 +24,22 @@ class ReLU(Activation):
         der_act = lambda input: input > 0
         super().__init__(act, der_act)
 
-class Softmax(Activation):
+class Softmax():
 
-    def __init__(self):
+    def forward(self, input):
 
-        def act(input):
-            expo = np.exp(input)
-            act =  expo/ np.sum(expo , axis = 0)
-            return act
+        self.input = input - max(input)
+        expo = np.exp(self.input)
+        self.out = expo / np.sum(expo)
+        return self.out 
+    
+    def backward(self,  o_grad, lr = None):
+        n = np.size(self.out)
+        ret = np.dot((np.identity(n) - self.out.T) * self.out, o_grad) 
+        return ret 
         
-        def der_act(input):
-            pass
-            
-        super().__init__(act, der_act)
+        #n = np.size(self.out)
+        #ret = np.dot((np.identity(n) - self.out.T) * self.out, o_grad) # shape  is 10 10
+        #return ret
+        
+   

@@ -13,9 +13,7 @@ class Activation(Layer):
         self.input  = input 
         return self.activation(input)
 
-    def backward(self,i_grad, lr = None):
+    def backward(self, i_grad, lr = None):
         
-        ret = np.multiply(i_grad, self.der_activation(self.input)) #Element wise mul 
-        return ret
-    
-
+        return np.multiply(i_grad, self.der_activation(self.input)) #Element wise mul 
+             

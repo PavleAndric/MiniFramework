@@ -17,7 +17,7 @@ def forward_pass(net, input):
     return output
 
 def backward_pass(net, gradient, lr):
-
+    
     for layer in reversed(net):
         gradient = layer.backward(gradient, lr)
 
