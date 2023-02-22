@@ -4,9 +4,9 @@ class Layer():
 
     def __init__(self, input_neurons, output_neurons):
         
-        self.W = np.random.normal(output_neurons,input_neurons) * np.sqrt(1./ input_neurons)
-        self.B = np.random.normal(output_neurons, 1) * np.sqrt(1./output_neurons)
-
+        self.W = np.random.randn(output_neurons,input_neurons) * np.sqrt(1./ input_neurons)
+        self.B = np.random.randn(output_neurons, 1) * np.sqrt(1./output_neurons)
+        
     def forward(self, input):
 
         self.X = input  #values of neurons of the current layer
